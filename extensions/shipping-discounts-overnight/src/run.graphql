@@ -1,0 +1,26 @@
+query RunInput {
+  cart {
+    cost {
+      subtotalAmount {
+        amount
+      }
+    }
+    lines {
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          product {
+            productType
+          }
+        }
+      }
+    }
+    deliveryGroups {
+      id
+      deliveryOptions {
+        title
+        handle
+      }
+    }
+  }
+}

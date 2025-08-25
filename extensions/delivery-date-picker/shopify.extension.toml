@@ -1,0 +1,148 @@
+# Learn more about configuring your checkout UI extension:
+# https://shopify.dev/api/checkout-extensions/checkout/configuration
+
+# The version of APIs your extension will receive. Learn more:
+# https://shopify.dev/docs/api/usage/versioning
+api_version = "2025-04"
+
+[[extensions]]
+name = "Delivery Date Picker"
+handle = "delivery-date-picker"
+type = "ui_extension"
+
+
+# Controls where in Shopify your extension will be injected,
+# and the file that contains your extension’s source code. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/unstable/extension-targets-overview
+
+[[extensions.targeting]]
+module = "./src/Checkout.tsx"
+target = "purchase.checkout.shipping-option-list.render-before"
+
+[extensions.capabilities]
+# Gives your extension access to directly query Shopify’s storefront API.
+# https://shopify.dev/docs/api/checkout-ui-extensions/unstable/configuration#api-access
+api_access = true
+
+# Gives your extension access to make external network calls, using the
+# JavaScript `fetch()` API. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/unstable/configuration#network-access
+# network_access = true
+
+# Loads metafields on checkout resources, including the cart,
+# products, customers, and more. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/unstable/configuration#metafields
+
+# [[extensions.metafields]]
+# namespace = "my_namespace"
+# key = "my_key"
+# [[extensions.metafields]]
+# namespace = "my_namespace"
+# key = "my_other_key"
+
+# Defines settings that will be collected from merchants installing
+# your extension. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/unstable/configuration#settings-definition
+
+[extensions.settings]
+[[extensions.settings.fields]]
+key = "allow_future_delivery_dates"
+type = "boolean"
+name = "Allow future delivery dates"
+description = "Allow the customer to pick a future delivery date (if this is off, all orders will default to ASAP)"
+
+[[extensions.settings.fields]]
+key = "show_date_override_textbox"
+type = "boolean"
+name = "Show date override textbox (debug only)"
+description = "Show a textbox to override the current date for testing purposes"
+
+[[extensions.settings.fields]]
+key = "peak_season_start_date"
+type = "date"
+name = "Peak season start date"
+description = "The first day of peak season"
+
+[[extensions.settings.fields]]
+key = "peak_season_end_date"
+type = "date"
+name = "Peak season end date"
+description = "The last day of peak season"
+
+[[extensions.settings.fields]]
+key = "gel_start_date"
+type = "date"
+name = "Gel start date"
+description = "The first day gel will be needed"
+
+[[extensions.settings.fields]]
+key = "gel_end_date"
+type = "date"
+name = "Gel end date"
+description = "The last day gel will be needed"
+
+[[extensions.settings.fields]]
+key = "time_day_cutoff"
+type = "single_line_text_field"
+name = "Time of day cutoff"
+description = "The cutoff time before orders are considered the next day. Write as a 24 hour time, in Eastern Time (e.g. 13:45)"
+
+[[extensions.settings.fields]]
+key = "factory_offdays"
+type = "multi_line_text_field"
+name = "Factory day-of-week closures"
+description = "Weekdays the factory is not open (put one per line, write as Monday, Tuesday, Wednesday, etc.)"
+
+[[extensions.settings.fields]]
+key = "factory_offdays_specific"
+type = "multi_line_text_field"
+name = "Factory specific date closures"
+description = "Additional days the factory will be closed (put as YYYY-MM-DD, one per line)"
+
+[[extensions.settings.fields]]
+key = "non_delivery_days"
+type = "multi_line_text_field"
+name = "Non-delivery days of week"
+description = "Weekdays the shipper will not deliver (put one per line, write as Monday, Tuesday, Wednesday, etc.)"
+
+[[extensions.settings.fields]]
+key = "non_delivery_days_specific"
+type = "multi_line_text_field"
+name = "Specific non-delivery days"
+description = "Additional days the shipper will not deliver (put as YYYY-MM-DD, one per line)"
+
+[[extensions.settings.fields]]
+key = "strawberry_blackout_dates"
+type = "multi_line_text_field"
+name = "Strawberry blackout dates"
+description = "Additional days the shipper will not deliver (put as YYYY-MM-DD, one per line)"
+
+[[extensions.settings.fields]]
+key = "zip_code_method_ineligibility"
+type = "multi_line_text_field"
+name = "ZIP Code Ineligibility rules"
+description = "Rules for marking shipping methods as unavailable (enter one per line in the form \"ZIP Code:Methods Unavailable Comma Separated\" e.g. \"90210:Two-Day,Economy\")"
+
+[[extensions.settings.fields]]
+key = "zip_code_future_date_ineligibility"
+type = "multi_line_text_field"
+name = "ZIP Codes Ineligible for Future Dates"
+description = "A list of ZIP codes ineligible for shipping on future dates (enter one per line)"
+
+[[extensions.settings.fields]]
+key = "po_box_future_date_notice"
+type = "multi_line_text_field"
+name = "PO Box future date notice"
+description = "The notice shown to PO Box users that they cannot ship on future dates"
+
+[[extensions.settings.fields]]
+key = "po_box_strawberry_notice"
+type = "multi_line_text_field"
+name = "PO Box strawberry notice"
+description = "The notice shown to PO Box users that they cannot ship strawberries"
+
+[[extensions.settings.fields]]
+key = "future_date_selling_plan_id"
+type = "single_line_text_field"
+name = "Future date selling plan ID"
+description = "The selling plan ID to be used when the customer selects \"future date\" so they're only charged when the item is actually shipped"

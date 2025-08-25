@@ -1,0 +1,36 @@
+Steps:
+1. Install app on store
+2. Add the delivery date selector and the gift note box in the relevant location from checkout customization (Settings -> Checkout -> Checkout Customization -> Customize)
+3. Enable delivery date modification from Shopify GraphiQL app (which you may need to install):
+
+Query to find function ID:
+query {
+  shopifyFunctions(first: 25) {
+    nodes {
+      app {
+        title
+      }
+      apiType
+      title
+      id
+    }
+  }
+}
+
+Query to activate function:
+mutation {
+  deliveryCustomizationCreate(deliveryCustomization: {
+    functionId: "YOUR_FUNCTION_ID_HERE"
+    title: "Only show available delivery options for selected delivery date"
+    enabled: true
+  }) {
+    deliveryCustomization {
+      id
+    }
+    userErrors {
+      message
+    }
+  }
+}
+
+4. Add checkout rule to block PO boxes by going to settings (Settings -> Checkout -> Checkout rules -> Add rule -> "cart-checkout-validation") and then activate it

@@ -1,0 +1,24 @@
+query RunInput {
+  cart {
+    shipSetting: attribute(key: "shipSetting") {
+      value
+    }
+    availableShippingMethods: attribute(key: "availableMethods") {
+      value
+    }
+    deliveryGroups {
+      deliveryAddress {
+        provinceCode
+      }
+      deliveryOptions {
+        handle
+        title
+      }
+    }
+  }
+  deliveryCustomization {
+    peakSeasonStartDate: metafield(namespace: "delivery-modification", key: "peakSeasonStartDate") {
+      value
+    }
+  }
+}

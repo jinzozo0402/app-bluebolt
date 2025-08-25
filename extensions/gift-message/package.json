@@ -1,0 +1,15 @@
+{
+  "name": "gift-message",
+  "private": true,
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@shopify/ui-extensions": "^2024.10.x",
+    "@shopify/ui-extensions-react": "^2024.10.x",
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "react-reconciler": "0.29.0"
+  }
+}
