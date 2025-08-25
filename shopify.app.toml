@@ -2,8 +2,8 @@
 
 client_id = "456921d752862e54051dfe27b521d9a7"
 name = "Godiva Dev BlueBolt"
-application_url = "https://serve-tumor-utc-toxic.trycloudflare.com"
-embedded = true
+# Extension-only app - no web interface
+embedded = false
 
 [build]
 automatically_update_urls_on_dev = true
@@ -13,13 +13,6 @@ include_config_on_deploy = true
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "customer_read_customers,customer_read_orders,read_checkouts,read_customers,read_delivery_customizations,read_shipping,write_delivery_customizations,write_products,unauthenticated_read_selling_plans"
-
-[auth]
-redirect_urls = [
-  "https://serve-tumor-utc-toxic.trycloudflare.com/auth/callback",
-  "https://serve-tumor-utc-toxic.trycloudflare.com/auth/shopify/callback",
-  "https://serve-tumor-utc-toxic.trycloudflare.com/api/auth/callback"
-]
 
 [webhooks]
 api_version = "2025-04"
